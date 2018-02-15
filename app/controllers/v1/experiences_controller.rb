@@ -12,7 +12,11 @@ class V1::ExperiencesController < ApplicationController
       render json: { errors: @experience.errors.messages },
              status: :unprocessable_entity
     end
+  end
 
+  def show
+    @experience = Experience.find(params[:id])
+    render :show, status: :ok
   end
 
   def experience_params

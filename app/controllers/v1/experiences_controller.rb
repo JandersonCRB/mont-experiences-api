@@ -20,6 +20,8 @@ class V1::ExperiencesController < ApplicationController
   end
 
   def experience_params
-    params.require(:experience).permit(:name, :description, :itinerary, :observation)
+    params.require(:experience).permit(:name, :location, :latitude   , :longitude     , :has_transfer, :description, :itinerary     , :observation,  :price, :active, :language, :duration, :cover_photo, 
+                                       :about_booking  , :cancelation, :payment_method, :calendar    , :recommended, :about_transfer, :about_location, :category_ids
+      )
   end
 end

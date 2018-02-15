@@ -1,6 +1,7 @@
 json.data do
 	json.id              @experience.id
 	json.name            @experience.name
+	json.description     @experience.description
 	json.location        @experience.location
 	json.latitude        @experience.latitude
 	json.longitude       @experience.longitude
@@ -10,7 +11,8 @@ json.data do
 	json.active          @experience.active
 	json.duration        @experience.duration
 	json.language        @experience.language
-	json.cancelation     @experience.payment_method
+	json.cancelation     @experience.cancelation
+	json.payment_method  @experience.payment_method
 	json.calendar        @experience.calendar
 	json.about_booking   @experience.about_booking
 	json.recommended     @experience.recommended

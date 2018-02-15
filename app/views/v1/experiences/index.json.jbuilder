@@ -3,6 +3,7 @@ json.data do
 
 		json.id              experience.id
 		json.name            experience.name
+		json.description     experience.description
 		json.location        experience.location
 		json.latitude        experience.latitude
 		json.longitude       experience.longitude

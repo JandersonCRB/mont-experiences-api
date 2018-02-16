@@ -28,8 +28,3 @@
 /public/system/
 
 # Ignore files with secret information
-
-/config/database.yml
-/config/secrets.yml
-/config/environments/development.rb
-/config/environments/production.rb

@@ -14,13 +14,13 @@ class V1::ExperiencesController < ApplicationController
     end
   end
   def update
-     # if @experience.update(experience_params)
-     #    format.html { redirect_to @experience, notice: 'Experiência atualizada com sucesso.' }
-     #    format.json { render :show, status: :ok, location: @experience }
-     #  else
-     #    format.html { render :edit }
-     #    format.json { render json: @experience.errors, status: :unprocessable_entity }
-     #  end
+    @experience = Experience.find(params[:id])
+     if @experience.update(experience_params)
+        render json: @experience, status: :created
+      else
+        render json: { errors: @experience.errors.messages },
+             status: :unprocessable_entity
+      end
   end
   def show
     @experience = Experience.find(params[:id])

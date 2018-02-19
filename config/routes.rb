@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 	namespace :v1, defaults: { format: :json } do
 		resources :experiences
 		resources :categories
+		resource  :sessions, only: [:create, :destroy]
 	end
 end

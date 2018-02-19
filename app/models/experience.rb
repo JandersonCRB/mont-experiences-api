@@ -9,6 +9,7 @@ class Experience < ApplicationRecord
 	scope :active, -> (active) { where active: active }
 	scope :recommended, -> (recommended) { where recommended: recommended }
 	scope :starts_with, -> (name) { where("name like ?", "#{name}%")}
+	scope :order_by, -> (order_by) { order(order_by)}
 
 	def cover_photo
 		Photo.find(self.cover_photo_id) if Photo.exists?(self.cover_photo_id)

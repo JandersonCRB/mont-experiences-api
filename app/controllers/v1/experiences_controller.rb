@@ -1,18 +1,18 @@
 class V1::ExperiencesController < ApplicationController
 	before_action :set_experience, except: [:index, :create]
 
-	#GET /v1/experiences
+	# GET /v1/experiences
 	def index
 		@experiences = Experience.where(nil) #Get all experiences
 		@experiences = @experiences.active     (params[:active])      if params[:active].present?
 		@experiences = @experiences.recommended(params[:recommended]) if params[:recommended].present?
 		@experiences = @experiences.starts_with(params[:starts_with]) if params[:starts_with].present?
-		@experiences = @experiences.order      (params[:order])       if params[:order].present?
+		@experiences = @experiences.order_by   (params[:order])       if params[:order].present?
 		
 		render :index, status: :ok
 	end
 
-	#POST /v1/experiences
+	# POST /v1/experiences
 	def create
 		@experience = Experience.new(experience_params)
 
@@ -24,22 +24,22 @@ class V1::ExperiencesController < ApplicationController
 		end
 	end
 
-	#PATCH /v1/experiences/:id
+	# PATCH /v1/experiences/:id
 	def update
 		if @experience.update(experience_params)
-			render json: @experience, status: :created
+			render :show, status: :created
 		else
 			render json: { errors: @experience.errors.messages },
-					 status: :unprocessable_entity
+						 status: :unprocessable_entity
 		end
 	end
 
-	#GET /v1/experiences/:id
+	# GET /v1/experiences/:id
 	def show
 		render :show, status: :ok
 	end
 
-	#DELETE /v1/experiences/:id
+	# DELETE /v1/experiences/:id
 	def destroy
 		@experience.destroy
 

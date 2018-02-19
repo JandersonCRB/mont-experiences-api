@@ -1,6 +1,7 @@
 class V1::CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:index, :create]
 
+  # GET /v1/categories
   def index
     @categories = Category.where(nil) #Get all categories
     @categories = @categories.show       (params[:show])        if params[:show].present?
@@ -9,9 +10,7 @@ class V1::CategoriesController < ApplicationController
     render :index, status: :ok
   end
 
-  def show
-  end
-
+  # POST /v1/categories
   def create
     @category = Category.new(category_params)
 
@@ -23,26 +22,26 @@ class V1::CategoriesController < ApplicationController
     end
   end
 
-  #TODO
+  # PATCH /v1/categories/:id
   def update
-    # respond_to do |format|
-    #   if @category.update(category_params)
-    #     format.html { redirect_to @category, notice: 'Category was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @category }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @category.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    if @category.update(category_params)
+      render :show, status: :created
+    else
+      render json: { errors: @category.errors.messages },
+             status: :unprocessable_entity
+    end
   end
 
-  #TODO
+  # GET /v1/categories/:id
+  def show
+    render :show, status: :ok
+  end
+
+  # DELETE /v1/categories/:id
   def destroy
-    # @category.destroy
-    # respond_to do |format|
-    #   format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-    #   format.json { head :no_content }
-    # end
+    @category.destroy
+
+    render head :no_content
   end
 
   private

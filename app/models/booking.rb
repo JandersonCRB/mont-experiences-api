@@ -63,11 +63,11 @@ class Booking < ApplicationRecord
 
   def send_cancel_msg_to_slack
     slack = set_bookings_channel
-    slack.post text: Slack::Notifier::Util::LinkFormatter.format("CANCELAMENTO: O usuário #{self.user.first_name} CANCELOU um agendamento do passeio #{self.experience.name}. Clique [aqui](http://montviagens.com#{booking_path(self)}) para visualizar")
+    slack.post text: Slack::Notifier::Util::LinkFormatter.format("CANCELAMENTO: O usuário #{self.user.first_name} CANCELOU um agendamento do passeio #{self.experience.name}. Clique [aqui](http://montviagens.com/bookings/#{self.id}) para visualizar")
   end
   def send_msg_to_slack
 		slack = set_bookings_channel
-  	slack.post text: Slack::Notifier::Util::LinkFormatter.format("AGENDAMENTO: O usuário #{self.user.first_name} fez um agendamento do passeio #{self.experience.name}. Clique [aqui](http://montviagens.com#{booking_path(self)}) para visualizar")
+  	slack.post text: Slack::Notifier::Util::LinkFormatter.format("AGENDAMENTO: O usuário #{self.user.first_name} fez um agendamento do passeio #{self.experience.name}. Clique [aqui](http://montviagens.com/bookings/#{self.id}) para visualizar")
 	end
 
   def send_email

@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 		resources :experiences
 		resources :categories
 		resource  :sessions, only: [:create, :destroy]
-		resources :bookings
+		resources :bookings do
+			member do
+				put 'cancel'
+			end
+		end
 	end
 end

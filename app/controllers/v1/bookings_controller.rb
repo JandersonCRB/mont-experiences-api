@@ -1,56 +1,57 @@
 class V1::BookingsController < ApplicationController
-	before_action :authenticate_user!, only: [:new, :index, :create, :show]
+	before_action :authenticate_user!
+	before_action :set_booking, only: [:cancel, :show]
+
 	def index
 		@bookings = current_user.bookings.order(:created_at)
+
+		render :index, status: :ok
 	end
-	def edit
-		redirect_to root_path if !current_user.admin
-		@booking = Booking.find(params[:id])
-		params[:status] = @booking.status if @booking.status.present?
-	end
+
 	def update
-		redirect_to root_path if !current_user.admin
-		@booking = Booking.find(params[:id])
-		if @booking.update_column(:status, booking_edit_params[:status])
-			flash[:notice] = "Salvo!"
-			redirect_to @booking
-		else
-			flash[:error] = "Ocorreu um erro!"
-			redirect_to edit_booking_path(@booking)
-		end
+		# redirect_to root_path if !current_user.admin
+		# @booking = Booking.find(params[:id])
+		# if @booking.update_column(:status, booking_edit_params[:status])
+		# 	flash[:notice] = "Salvo!"
+		# 	redirect_to @booking
+		# else
+		# 	flash[:error] = "Ocorreu um erro!"
+		# 	redirect_to edit_booking_path(@booking)
+		# end
 	end
 	def cancel
-		@booking = Booking.find(params[:id])
 		if @booking.set_status(4, current_user)
-			flash[:notice] = "Salvo com sucesso!"
+			head(:ok)
 		else
-			flash[:error] = "Você não permissão para cancelar este agendamento."
+			head(:unauthorized)
 		end
-		redirect_to booking_path(@booking)
 	end
 
 	def create
 		@booking = Booking.new(bookings_params)
 		@booking.user = current_user
-		@experience_id = @booking.experience_id
 		@booking.cost = @booking.experience.price * @booking.adults if @booking.adults.present?
 		if @booking.save
-			flash[:notice] = "Agendado com sucesso!"
-			redirect_to booking_path(@booking)
+			render :show, status: :created
 		else
-	    	session[:booking] = params[:booking]
-	    	redirect_to new_booking_path(@experience_id)
-   		end
+			head(:unauthorized)
+		end
 	end
 	def show
-		@booking = Booking.find(params[:id])
-		redirect_to bookings_path if @booking.user != current_user && !current_user.admin
+		if @booking.user == current_user
+			render :show, status: :ok
+		else
+			head(:unauthorized)
+		end
 	end
 	private
+		def set_booking
+			@booking = Booking.find(params[:id])
+		end
 		def booking_edit_params
 			params.require(:booking).permit(:status)
 		end
 		def bookings_params
-	   		params.require(:booking).permit(:name, :email, :phone, :dates, :comments, :address, :complement, :adults, :children, :cost, :experience_id, :status)
-	  	end
+			params.require(:booking).permit(:name, :email, :phone, :dates, :comments, :address, :complement, :adults, :children, :cost, :experience_id, :status)
+		end
 end

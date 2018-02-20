@@ -1,9 +1,9 @@
 O usuário <%= @user.first_name %> fez um agendamento do passeio <%= @experience.name %>.
 <br/>
-<%= link_to "Booking", booking_url(@booking) %>
+<%= link_to "Booking", v1_booking_url(@booking) %>
 <br/>
 <br/>
-Experiência: <%= link_to @experience.name, experience_url(@experience) %>
+Experiência: <%= link_to @experience.name, v1_experience_url(@experience) %>
 <br/>
 Titular:    <%= @booking.name %>
 <br/>

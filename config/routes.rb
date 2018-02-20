@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 		resources :experiences
 		resources :categories
 		resource  :sessions, only: [:create, :destroy]
+		resources :bookings
 	end
 end

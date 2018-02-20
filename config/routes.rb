@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 				put 'cancel'
 			end
 		end
+		resources :users, only: [:create]
 	end
 end

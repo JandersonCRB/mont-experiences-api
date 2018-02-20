@@ -1,4 +1,8 @@
 class V1::SessionsController < ApplicationController
+	def show
+		current_user ? head(:ok) : head(:unauthorized)
+	end
+
 	def create
 		user = User.where(email: params[:email]).first
 

@@ -92,6 +92,8 @@ GEM
       mimemagic (~> 0.3.0)
     pg (0.21.0-x86-mingw32)
     puma (3.11.2)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.4)
     rack-cors (1.0.2)
     rack-test (0.8.2)
@@ -158,6 +160,7 @@ DEPENDENCIES
   paperclip (~> 5.2, >= 5.2.1)
   pg (~> 0.18)
   puma (~> 3.7)
+  pundit
   rack-cors
   rails (~> 5.1.4)
   simple_token_authentication (~> 1.0)

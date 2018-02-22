@@ -40,4 +40,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'paperclip', '~> 5.2', '>= 5.2.1'
 
-gem "slack-notifier"
+gem 'slack-notifier'
+
+gem 'pundit'

@@ -19,5 +19,6 @@ Rails.application.routes.draw do
 			end
 		end
 		resources :users, only: [:create]
+		resources :providers
 	end
 end

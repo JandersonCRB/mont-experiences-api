@@ -54,8 +54,8 @@ class V1::ExperiencesController < ApplicationController
 
     #Permite apenas que os parâmetros abaixo sejam modificados
 		def experience_params
-			params.require(:experience).permit(:name, :location, :latitude   , :longitude     , :has_transfer, :description, :itinerary     , :observation,  :price, :active, :language, :duration, :cover_photo, 
-											   :about_booking  , :cancelation, :payment_method, :calendar    , :recommended, :about_transfer, :about_location, :category_ids
+			params.require(:experience).permit(:name, :location, :latitude   , :longitude     , :has_transfer, :description, :itinerary     , :observation,    :price, :active, :language, :duration, :cover_photo, 
+																				 :about_booking  , :cancelation, :payment_method, :calendar    , :recommended, :about_transfer, :about_location, :category_ids, :provider_id
 				)
 		end
 end

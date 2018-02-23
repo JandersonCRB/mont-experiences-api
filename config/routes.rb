@@ -19,6 +19,11 @@ Rails.application.routes.draw do
 			end
 		end
 		resources :users, only: [:create]
-		resources :providers
+		resources :providers do
+			member do
+				post 'employee', to: 'providers#create_employee'
+				delete 'employee', to: 'providers#remove_employee'
+			end
+		end
 	end
 end

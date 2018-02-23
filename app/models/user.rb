@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
 	has_many :bookings
 	has_many :managements
-	has_many :providers, through: :managements
+	has_many :providers, through: :managements, dependent: :destroy
 
 	# def self.from_omniauth(auth)
 	# 	user = User.where(email: auth.info.email).first

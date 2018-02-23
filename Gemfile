@@ -32,6 +32,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
+group :test do
+	gem 'faker'
+end
+
 group :development do
 end
 

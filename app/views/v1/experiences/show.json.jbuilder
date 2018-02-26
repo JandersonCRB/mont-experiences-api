@@ -18,4 +18,7 @@ json.about_booking   @experience.about_booking
 json.recommended     @experience.recommended
 json.about_transfer  @experience.about_transfer
 json.category        @experience.categories.first.name if @experience.categories.first.present?
-json.cover_photo_url "http://s3-sa-east-1.amazonaws.com/montviagens.com/photos/images/#{@experience.cover_photo_id}/original/#{@experience.cover_photo.image_file_name}" if @experience.cover_photo.present?
+json.cover_photo_url request.base_url + @experience.cover_photo.image.url if @experience.cover_photo.present?
+json.photos          @experience.photos do |photo|
+	json.url request.base_url + photo.image.url
+end

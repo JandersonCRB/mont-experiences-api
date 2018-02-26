@@ -18,7 +18,11 @@ Rails.application.routes.draw do
 				put 'cancel'
 			end
 		end
-		resources :users, only: [:create]
+		resources :users, except: [:index, :destroy] do
+			collection do
+				get 'profile'
+			end
+		end
 		resources :providers do
 			member do
 				post 'employee', to: 'providers#create_employee'

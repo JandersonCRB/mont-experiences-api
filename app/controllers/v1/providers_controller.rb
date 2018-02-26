@@ -1,5 +1,6 @@
 class V1::ProvidersController < ApplicationController
 	before_action :set_provider, except: [:create, :index]
+	before_action :authenticate_user!, except: [:show, :index]
 	after_action  :verify_authorized
 
 	#GET /v1/providers

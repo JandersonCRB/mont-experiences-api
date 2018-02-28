@@ -6,8 +6,11 @@ json.user do
 
 end
 json.experience do 
-	json.id   @booking.experience.id
-	json.name @booking.experience.name
+	json.id             @booking.experience.id
+	json.name           @booking.experience.name
+	json.price          @booking.experience.price
+	json.payment_method @booking.experience.payment_method
+	json.cancelation    @booking.experience.cancelation
 end
 json.name       @booking.name
 json.phone      @booking.phone

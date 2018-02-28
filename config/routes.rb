@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 	  	end
 	  end
 		resources :categories
-		resource  :sessions, only: [:create, :destroy]
+		resource  :sessions, only: [:create, :destroy, :show]
 		resources :bookings do
 			member do
 				put 'cancel'

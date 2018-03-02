@@ -16,6 +16,7 @@ json.array! @experiences do |experience|
 	json.about_booking   experience.about_booking
 	json.recommended     experience.recommended
 	json.about_transfer  experience.about_transfer
+	json.has_transfer    experience.has_transfer
 	json.category        experience.categories.first.name if experience.categories.first.present?
 	json.cover_photo_url request.base_url + experience.cover_photo.image.url if experience.cover_photo.present?
 end

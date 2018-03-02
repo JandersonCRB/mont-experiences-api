@@ -1,6 +1,10 @@
 class V1::SessionsController < ApplicationController
 	def show
-		current_user ? head(:no_content) : head(:unauthorized)
+		if current_user
+			render :show, status: :ok
+		else
+		 	head(:unauthorized)
+		end
 	end
 
 	def create

@@ -1,4 +1,9 @@
-class PhotosController < ApplicationController
+class V1::PhotosController < ApplicationController
+	def index
+		@photos = Photo.where(experience: Experience.find(params[:experience_id]))
+
+		render :index, status: :ok
+	end
 	def create
 		@experience = Experience.find(params[:experience_id])
 
@@ -8,7 +13,7 @@ class PhotosController < ApplicationController
 			end
 		end
 		@photos = @experience.photos
-		redirect_back(fallback_location: request.referer, notice: "Saved...")
+		render :create, status: :created
 	end
 	def set_cover
 		# @experience = Experience.find(params[:experience_id])

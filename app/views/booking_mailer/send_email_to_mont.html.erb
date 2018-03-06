@@ -1,0 +1,28 @@
+O usuário <%= @user.first_name %> fez um agendamento do passeio <%= @experience.name %>.
+<br/>
+<%= link_to "Booking", v1_booking_url(@booking) %>
+<br/>
+<br/>
+Experiência: <%= link_to @experience.name, v1_experience_url(@experience) %>
+<br/>
+Titular:    <%= @booking.name %>
+<br/>
+Data:       <%= @booking.dates %>
+<br/>
+Email:      <%= @booking.email %>
+<br/>
+Telefone:   <%= @booking.phone %>
+<br/>
+Adultos:    <%= @booking.adults %>
+<br/>
+Custo:      <%= @booking.cost %>
+<br/>
+<% if @booking.address.present? %>
+	Endereço:   <%= @booking.address %>
+	<br/>
+<% end %>
+<% if @booking.complement.present? %>
+	Complemento: <%= @booking.complement %>
+	<br/>
+<% end %>
+Comentários: <%= simple_format(@booking.comments) %>

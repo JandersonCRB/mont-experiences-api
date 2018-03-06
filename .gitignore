@@ -27,4 +27,8 @@
 /db/schema.rb
 /public/system/
 
-# Ignore files with secret information
+# Ignore files with secret information
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

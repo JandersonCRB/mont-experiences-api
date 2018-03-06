@@ -1,12 +1,12 @@
 class V1::UsersController < ApplicationController
-	before_action :authenticate_user!, except: [:show, :index]
+	before_action :authenticate_user!, except: [:show, :index, :create]
 	def create
 		@user = User.new(users_params)
 
 		if @user.save
-			render :create, status: :ok
+			render :create, status: :created
 		else
-			head(:unprocessable_entity)
+			render :json => @user.errors.full_messages, status: :unprocessable_entity
 		end
 	end
 	def update
@@ -31,6 +31,6 @@ class V1::UsersController < ApplicationController
 	private
 
 		def users_params
-			params.require(:user).permit(:email, :first_name, :last_name, :telephone)
+			params.require(:user).permit(:email, :first_name, :last_name, :telephone, :password, :password_confirmation)
 		end
 end

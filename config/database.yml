@@ -38,6 +38,6 @@ production:
   timeout: 5000
   host: test-db.ckgqdug9uygw.us-east-2.rds.amazonaws.com
   port: 5432
-  database: testmont
+  database: montdb
   username: Mont
   password: 12345678

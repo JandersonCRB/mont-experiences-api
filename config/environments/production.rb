@@ -90,7 +90,7 @@ Rails.application.configure do
     path: ':class/:attachment/:id/:style/:filename',
     s3_host_name: 's3-sa-east-1.amazonaws.com',
     s3_credentials: {
-      bucket: 'montviagens.com',
+      bucket: 'test.montviagens.com',
       access_key_id: 'AKIAJDQ3N736JWJDXJAA',
       secret_access_key: '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',
       s3_region: 'sa-east-1'

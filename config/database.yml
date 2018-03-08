@@ -36,7 +36,7 @@ production:
   encoding: utf-8
   pool: 5
   timeout: 5000
-  host: testdb.ckgqdug9uygw.us-east-2.rds.amazonaws.com
+  host: test-db.ckgqdug9uygw.us-east-2.rds.amazonaws.com
   port: 5432
   database: testmont
   username: Mont

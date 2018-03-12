@@ -17,7 +17,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt', :platforms => :mswin
+gem 'bcrypt', '~> 3.1', '>= 3.1.11',                                                    :platforms => :ruby
+#gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt', :platforms => :mswin
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'
 
@@ -42,6 +43,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'paperclip', '~> 5.2', '>= 5.2.1'
+gem 'aws-sdk', '~> 2.8'
 gem 'slack-notifier'
 gem 'pundit'
 gem 'migration_data'

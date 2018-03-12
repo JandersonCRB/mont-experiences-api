@@ -1,5 +1,5 @@
 branch-defaults:
-  master:
+  JandersonCRB:
     environment: production
     group_suffix: null
 global:
@@ -7,7 +7,7 @@ global:
   branch: null
   default_ec2_keyname: mont public
   default_platform: Ruby 2.3 (Passenger Standalone)
-  default_region: sa-east-1
+  default_region: us-east-2
   include_git_submodules: true
   instance_profile: null
   platform_name: null

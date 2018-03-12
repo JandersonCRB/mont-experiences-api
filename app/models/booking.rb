@@ -8,7 +8,7 @@ class Booking < ApplicationRecord
   validates :experience, presence: true
   validates :user,       presence: true
   validates :dates,      presence: true
-  validates :adults,     presence: true
+  validates :adults,     presence: true,                    length: {in: 1..30}
   validates :address,    presence: true, if: :has_transfer?
   validates :name,       presence: true
   validates :phone,      presence: true

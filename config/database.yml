@@ -36,8 +36,8 @@ production:
   encoding: utf-8
   pool: 5
   timeout: 5000
-  host: test-db.ckgqdug9uygw.us-east-2.rds.amazonaws.com
-  port: 5432
-  database: montdb
-  username: Mont
-  password: 12345678
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>

@@ -102,8 +102,8 @@ Rails.application.configure do
 		s3_host_name: 's3-sa-east-1.amazonaws.com',
 		s3_credentials: {
 			bucket: 'test.montviagens.com',
-			access_key_id: 'AKIAJDQ3N736JWJDXJAA',
-			secret_access_key: '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',
+			access_key_id: ENV['AWS_ACCESS_KEY'],
+			secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
 			s3_region: 'sa-east-1'
 		}
 	}

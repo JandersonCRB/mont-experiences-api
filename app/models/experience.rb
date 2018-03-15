@@ -9,11 +9,14 @@ class Experience < ApplicationRecord
 	validates :provider, presence: :true
 	validates :name,     presence: :true
 
-	scope :active,      -> (active) { where active: active }
-	scope :recommended, -> (recommended) { where recommended: recommended }
-	scope :starts_with, -> (name) { where("name like ?", "#{name}%")}
-	scope :order_by,    -> (order_by) { order(order_by)}
-
+	scope :active,         -> (active) { where active: active }
+	scope :recommended,    -> (recommended) { where recommended: recommended }
+	scope :starts_with,    -> (name) { where("name like ?", "#{name}%")}
+	scope :order_by,       -> (order_by) { order(order_by)}
+	scope :category_query, -> (category) { 
+		category = Category.where('name = ?', category).first&.id unless (Float(category) rescue false)
+		joins("join categories_experiences on experiences.id = categories_experiences.experience_id").where(["categories_experiences.category_id = ?", category]) 
+	}
 	def cover_photo
 		Photo.find(self.cover_photo_id) if Photo.exists?(self.cover_photo_id)
 	end

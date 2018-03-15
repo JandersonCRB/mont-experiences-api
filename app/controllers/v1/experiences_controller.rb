@@ -8,10 +8,11 @@ class V1::ExperiencesController < ApplicationController
 		@experiences = Experience.where(nil) #Get all experiences
 		authorize @experiences
 
-		@experiences = @experiences.active     (params[:active])      if params[:active].present?
-		@experiences = @experiences.recommended(params[:recommended]) if params[:recommended].present?
-		@experiences = @experiences.starts_with(params[:starts_with]) if params[:starts_with].present?
-		@experiences = @experiences.order_by   (params[:order_by])    if params[:order_by].present?
+		@experiences = @experiences.active         (params[:active])      if params[:active].present?
+		@experiences = @experiences.recommended    (params[:recommended]) if params[:recommended].present?
+		@experiences = @experiences.starts_with    (params[:starts_with]) if params[:starts_with].present?
+		@experiences = @experiences.order_by       (params[:order_by])    if params[:order_by].present?
+		@experiences = @experiences.category_query (params[:category])    if params[:category].present?
 		
 		render :index, status: :ok
 	end

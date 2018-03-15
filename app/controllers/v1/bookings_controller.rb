@@ -21,7 +21,7 @@ class V1::BookingsController < ApplicationController
 	end
 	def cancel
 		if @booking.set_status(4, current_user)
-			head(:ok)
+			render :show, status: :ok
 		else
 			head(:unauthorized)
 		end

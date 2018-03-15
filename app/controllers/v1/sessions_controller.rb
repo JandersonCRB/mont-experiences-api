@@ -3,7 +3,7 @@ class V1::SessionsController < ApplicationController
 		if current_user
 			render :show, status: :ok
 		else
-		 	head(:unauthorized)
+		 	render :json => {}, status: :unauthorized
 		end
 	end
 

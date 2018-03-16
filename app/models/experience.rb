@@ -5,6 +5,7 @@ class Experience < ApplicationRecord
 	has_one                 :photo, foreign_key: :cover_photo_id
 	belongs_to              :provider
 
+	before_validation :check_provider
 
 	validates :provider, presence: :true
 	validates :name,     presence: :true
@@ -24,5 +25,13 @@ class Experience < ApplicationRecord
 	def cover_photo= (p)
 		self.cover_photo_id = p.id if p.is_a? Photo
 		self.cover_photo_id = p if p.is_a? Integer
+	end
+
+	private
+
+	def check_provider
+		if !self.provider.present?
+			self.provider = Provider.find_or_create_by(name: 'Mont')
+		end
 	end
 end

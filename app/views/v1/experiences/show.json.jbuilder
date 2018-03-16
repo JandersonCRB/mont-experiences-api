@@ -20,8 +20,15 @@ json.recommended     @experience.recommended
 json.has_transfer    @experience.has_transfer
 json.about_transfer  @experience.about_transfer
 json.category        @experience.categories.first.name if @experience.categories.first.present?
-json.cover_photo_url request.base_url + @experience.cover_photo.image.url if @experience.cover_photo.present?
+if Rails.env.production?
+	json.cover_photo_url @experience.cover_photo.image.url if @experience.cover_photo.present?
+else
+	json.cover_photo_url request.base_url + @experience.cover_photo.image.url if @experience.cover_photo.present?
+end
 json.photos          @experience.photos do |photo|
-	json.url photo.image.url                    if Rails.env.production?
-	json.url request.base_url + photo.image.url if !Rails.env.production?
+	if Rails.env.production?
+		json.url photo.image.url      
+	else
+		json.url request.base_url + photo.image.url
+	end
 end

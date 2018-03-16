@@ -1,5 +1,5 @@
 class V1::CategoriesController < ApplicationController
-  before_action :set_category, only: [:index, :update]
+  before_action :set_category, only: [:index, :update, :show]
 
   # GET /v1/categories
   def index

@@ -15,11 +15,13 @@ json.cancelation     @experience.cancelation
 json.payment_method  @experience.payment_method
 json.calendar        @experience.calendar
 json.about_booking   @experience.about_booking
+json.about_location  @experience.about_location
 json.recommended     @experience.recommended
 json.has_transfer    @experience.has_transfer
 json.about_transfer  @experience.about_transfer
 json.category        @experience.categories.first.name if @experience.categories.first.present?
 json.cover_photo_url request.base_url + @experience.cover_photo.image.url if @experience.cover_photo.present?
 json.photos          @experience.photos do |photo|
-	json.url photo.image.url
+	json.url photo.image.url                    if Rails.env.production?
+	json.url request.base_url + photo.image.url if !Rails.env.production?
 end

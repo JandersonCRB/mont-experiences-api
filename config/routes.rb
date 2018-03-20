@@ -1,8 +1,8 @@
-Rails.application.routes.draw do
+	Rails.application.routes.draw do
 	devise_for :users
-	namespace :v1, defaults: { format: :json } do
+	namespace :v1 do
 	  resources :experiences do
-	  	resources :photos,   only: [:create, :destroy, :index] do
+	  	resources :photos,   only: [:create, :destroy, :index], format: :image do 
 	      member do
 	        post 'set_cover'
 	      end

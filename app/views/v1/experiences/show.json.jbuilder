@@ -26,6 +26,7 @@ else
 	json.cover_photo_url request.base_url + @experience.cover_photo.image.url if @experience.cover_photo.present?
 end
 json.photos          @experience.photos do |photo|
+	json.id photo.id
 	if Rails.env.production?
 		json.url photo.image.url      
 	else

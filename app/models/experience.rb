@@ -2,7 +2,7 @@ class Experience < ApplicationRecord
 	has_many                :photos
 	has_and_belongs_to_many :categories
 	has_many                :bookings
-	has_one                 :photo, foreign_key: :cover_photo_id
+	belongs_to              :cover_photo, foreign_key: :cover_photo_id, :class_name => 'Photo', optional: :true
 	belongs_to              :provider
 
 	before_validation :check_provider
@@ -18,14 +18,14 @@ class Experience < ApplicationRecord
 		category = Category.where('name = ?', category).first&.id unless (Float(category) rescue false)
 		joins("join categories_experiences on experiences.id = categories_experiences.experience_id").where(["categories_experiences.category_id = ?", category]) 
 	}
-	def cover_photo
-		Photo.find(self.cover_photo_id) if Photo.exists?(self.cover_photo_id)
-	end
+	# def cover_photo
+	# 	Photo.find(self.cover_photo_id) if Photo.exists?(self.cover_photo_id)
+	# end
 
-	def cover_photo= (p)
-		self.cover_photo_id = p.id if p.is_a? Photo
-		self.cover_photo_id = p if p.is_a? Integer
-	end
+	# def cover_photo= (p)
+	# 	self.cover_photo_id = p.id if p.is_a? Photo
+	# 	self.cover_photo_id = p if p.is_a? Integer
+	# end
 
 	private
 

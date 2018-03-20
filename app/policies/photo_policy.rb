@@ -4,7 +4,7 @@ class PhotoPolicy < ApplicationPolicy
 	end
 
 	def create?
-		return !record.experience.provider || user.providers.include?(record.experience.provider) || user.admin
+		return user.admin
 	end
 
 	def set_cover?

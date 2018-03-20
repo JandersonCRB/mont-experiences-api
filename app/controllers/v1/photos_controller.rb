@@ -12,13 +12,17 @@ class V1::PhotosController < ApplicationController
 	def create
 		@experience = Experience.find(params[:experience_id])
 		@cover_photo = @experience.cover_photo
-		authorize @photos
 		if params[:images]
 			params[:images].each do |img|
-				@experience.photos.create(image: img)
+				@experience.photos.new(image: img)
 			end
 			@photos = @experience.photos
-			render :index, status: :created
+			authorize @photos
+			if @experience.save
+				render :index, status: :created
+			else
+				head(:unauthorized)
+			end
 		else
 			head(:unauthorized)
 		end

@@ -3,7 +3,7 @@ branch-defaults:
     environment: production
     group_suffix: null
   master:
-    environment: production
+    environment: test
 global:
   application_name: mont-experiences-api
   branch: null

@@ -4,11 +4,11 @@ class ExperiencePolicy < ApplicationPolicy
 	end
 
 	def create?
-		return !record.provider || user.providers.include?(record.provider) || user.admin
+		return user.admin
 	end
 
 	def update?
-		return !record.provider || user.providers.include?(record.provider) || user.admin
+		return user.admin
 	end
 
 	def show?
@@ -16,6 +16,6 @@ class ExperiencePolicy < ApplicationPolicy
 	end
 
 	def destroy?
-		return !record.provider || user.providers.include?(record.provider) || user.admin
+		return user.admin
 	end
 end

@@ -1,12 +1,11 @@
 class Experience < ApplicationRecord
-	has_many                :photos
+	has_many                :photos, dependent: :destroy
 	has_and_belongs_to_many :categories
 	has_many                :bookings
 	belongs_to              :cover_photo, foreign_key: :cover_photo_id, :class_name => 'Photo', optional: :true
 	belongs_to              :provider
 
 	before_validation :check_provider
-
 	validates :provider, presence: :true
 	validates :name,     presence: :true
 

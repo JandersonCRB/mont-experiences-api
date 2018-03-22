@@ -32,7 +32,13 @@ class V1::ExperiencesController < ApplicationController
 	# PATCH /v1/experiences/:id
 	def update
 		if @experience.update(experience_params)
-			render :show, status: :created
+			@experience.categories = Category.find(params[:category_ids])
+			if @experience.save
+				render :show, status: :created
+			else
+				render json: { errors: @experience.errors.messages },
+											 status: :unprocessable_entity
+			end
 		else
 			render json: { errors: @experience.errors.messages },
 						 status: :unprocessable_entity
@@ -61,7 +67,7 @@ class V1::ExperiencesController < ApplicationController
 		#Permite apenas que os parâmetros abaixo sejam modificados
 		def experience_params
 			params.require(:experience).permit(:name, :location, :latitude   , :longitude     , :has_transfer, :description, :itinerary     , :observation,    :price, :active, :language, :duration, :cover_photo, 
-																				 :about_booking  , :cancelation, :payment_method, :calendar    , :recommended, :about_transfer, :about_location, :category_ids, :provider_id
+																				 :about_booking  , :cancelation, :payment_method, :calendar    , :recommended, :about_transfer, :about_location, :provider_id, :category_ids => []
 				)
 		end
 end

@@ -3,21 +3,19 @@ class V1::BookingsController < ApplicationController
 	before_action :set_booking, only: [:cancel, :show]
 
 	def index
-		@bookings = current_user.bookings.order(:created_at)
-
+		# @bookings = current_user.bookings.order(:created_at)
+		@bookings = policy_scope(Booking)
+		authorize @bookings
 		render :index, status: :ok
 	end
 
 	def update
-		# redirect_to root_path if !current_user.admin
-		# @booking = Booking.find(params[:id])
-		# if @booking.update_column(:status, booking_edit_params[:status])
-		# 	flash[:notice] = "Salvo!"
-		# 	redirect_to @booking
-		# else
-		# 	flash[:error] = "Ocorreu um erro!"
-		# 	redirect_to edit_booking_path(@booking)
-		# end
+		@booking = Booking.find(params[:id])
+		if @booking.set_status(params[:status],current_user)
+			render :show, status: :ok
+		else
+			head(:unauthorized)
+		end
 	end
 	def cancel
 		if @booking.set_status(4, current_user)
@@ -38,7 +36,7 @@ class V1::BookingsController < ApplicationController
 		end
 	end
 	def show
-		if @booking.user == current_user
+		if @booking.user
 			render :show, status: :ok
 		else
 			head(:unauthorized)
@@ -47,6 +45,7 @@ class V1::BookingsController < ApplicationController
 	private
 		def set_booking
 			@booking = Booking.find(params[:id])
+			authorize @booking
 		end
 		def booking_edit_params
 			params.require(:booking).permit(:status)

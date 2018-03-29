@@ -1,10 +1,8 @@
 class V1::SessionsController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
+
 	def show
-		if current_user
 			render :show, status: :ok
-		else
-		 	render :json => {}, status: :unauthorized
-		end
 	end
 
 	def create
@@ -18,11 +16,12 @@ class V1::SessionsController < ApplicationController
 	end
 
 	def destroy
-		current_user&.authentication_token = nil
-		if current_user&.save
-			head(:ok)
-		else
-			head(:unauthorized)
-		end
+		# current_user&.authentication_token = nil
+		# if current_user&.save
+		# 	head(:ok)
+		# else
+		# 	head(:unauthorized)
+		# end
+		head(:unauthorized)
 	end
 end

@@ -2,7 +2,7 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :experience
 
-  before_create  :set_defaults
+  before_create  :set_defaults, :check_calendar
   after_create :send_email, :send_msg_to_slack
 
   validates :experience, presence: true
@@ -13,6 +13,10 @@ class Booking < ApplicationRecord
   validates :name,       presence: true
   validates :phone,      presence: true
   validates :email,      presence: true
+
+  def check_calendar
+
+  end
 
   def set_status(status, current_user)
     if current_user.admin #Se o usuário for admin executa a ação sem verificar o mapa de estados

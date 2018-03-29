@@ -3,11 +3,6 @@ class ApplicationController < ActionController::API
 	include Pundit
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-	#DESATIVAR MENSAGENS DE FLASH DO DEVISE
-	def is_flashing_format?
-	  false
-	end
-
 	def user_not_authorized
 		head(:unauthorized)
 	end
@@ -21,7 +16,6 @@ class ApplicationController < ActionController::API
 			sign_in User.find(decoded["user_id"]) #DEVISE SIGN IN
 		rescue
 			@error_message="Invalid authentication token"
-			render json: {error: @error_message}, status: :unauthorized
 		end
 	end
 end

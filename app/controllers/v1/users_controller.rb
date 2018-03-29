@@ -14,8 +14,7 @@ class V1::UsersController < ApplicationController
 		if @user.update(users_params)
 			render :show, status: :created
 		else
-			render json: { errors: @user.errors.messages },
-						 status: :unprocessable_entity
+			render json: { errors: @user.errors.messages }, status: :unprocessable_entity
 		end
 	end
 	def show

@@ -22,9 +22,10 @@ class User < ApplicationRecord
 		secret = Rails.application.secrets.secret_key_base
 		if self.valid_password?(password)
 			payload = {
-					exp: 10.day.from_now.to_i,
-					iat: Time.now.to_i,
-					user_id: self.id
+					exp:     10.day.from_now.to_i,
+					iat:     Time.now.to_i,
+					user_id: self.id,
+					admin:   self.admin
 			}
 			token = JWT.encode payload, secret, 'HS256'
 			return token

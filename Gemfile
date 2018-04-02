@@ -22,6 +22,7 @@ gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'b
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'
 gem 'jwt'
+gem 'activeresource'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

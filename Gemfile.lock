@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/codahale/bcrypt-ruby.git
+  revision: f2db689ba567d1a018f4dacb1ccf909adc93e887
+  specs:
+    bcrypt (3.1.11)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -55,7 +61,6 @@ GEM
     aws-sdk-resources (2.10.122)
       aws-sdk-core (= 2.10.122)
     aws-sigv4 (1.0.2)
-    bcrypt (3.1.11-x86-mingw32)
     builder (3.2.3)
     byebug (10.0.0)
     climate_control (0.2.0)
@@ -171,7 +176,7 @@ PLATFORMS
 DEPENDENCIES
   activeresource
   aws-sdk (~> 2.8)
-  bcrypt (~> 3.1, >= 3.1.11)
+  bcrypt!
   byebug
   devise
   faker
@@ -187,9 +192,6 @@ DEPENDENCIES
   simple_token_authentication (~> 1.0)
   slack-notifier
   tzinfo-data
-
-RUBY VERSION
-   ruby 2.3.3p222
 
 BUNDLED WITH
    1.16.1

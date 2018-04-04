@@ -16,6 +16,10 @@ class BookingPolicy < ApplicationPolicy
 		return user.admin
 	end
 
+  def cancel?
+		return record.user == user
+	end
+
 	def update?
 		return user.admin
 	end

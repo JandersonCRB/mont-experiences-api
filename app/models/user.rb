@@ -4,9 +4,7 @@ class User < ApplicationRecord
 				    :recoverable,
 				    :rememberable,
 				    :trackable,
-				    :validatable,
-				    :confirmable,
-				    :allow_unconfirmed_access_for => nil
+				    :validatable
 
 
 

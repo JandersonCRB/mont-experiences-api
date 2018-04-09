@@ -1,5 +1,5 @@
 class V1::UsersController < ApplicationController
-	before_action :authenticate_user!, except: [:show, :index, :create]
+	before_action :authenticate_user!, except: [:show, :index, :create, :reset_password, :update_password]
 	def create
 		@user = User.new(users_params)
 
@@ -27,8 +27,27 @@ class V1::UsersController < ApplicationController
 		render :profile, status: :ok
 	end
 
+  def reset_password
+		@user = User.find_by_email(params[:email])
+		if @user.present?
+			@user.send_reset_password_instructions
+			head :ok
+		else
+			head :unauthorized
+		end
+	end
+	def update_password
+		@user = User.reset_password_by_token(reset_password_params)
+		if @user.save
+				head :ok
+		else
+			head :unauthorized
+		end
+	end
 	private
-
+		def reset_password_params
+			params.require(:user).permit(:reset_password_token, :password, :password_confirmation)
+		end
 		def users_params
 			params.require(:user).permit(:email, :first_name, :last_name, :telephone, :password, :password_confirmation)
 		end

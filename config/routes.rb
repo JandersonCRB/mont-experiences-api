@@ -1,6 +1,6 @@
 	Rails.application.routes.draw do
 	devise_for :users
-	namespace :v1 do
+	namespace :v1, :defaults => {format: :json} do
 	  resources :experiences do
 	  	resources :photos,   only: [:create, :destroy, :index], format: :image do 
 	      member do
@@ -23,7 +23,12 @@
 				get 'profile'
 			end
 		end
-		resource :users, only: [:update]
+		resource :users, only: [:update] do
+      collection do
+        post 'reset_password'
+        patch 'reset_password', to: 'users#update_password'
+      end
+    end
 		resources :providers do
 			member do
 				post 'employee', to: 'providers#create_employee'

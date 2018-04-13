@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
@@ -19,8 +18,10 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1', '>= 3.1.11',                                                    :platforms => :ruby
 #gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt', :platforms => :mswin
-gem 'devise'
+gem 'devise', '~> 4.4.3'
 gem 'simple_token_authentication', '~> 1.0'
+gem 'jwt'
+gem 'activeresource'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

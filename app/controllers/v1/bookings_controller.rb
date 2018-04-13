@@ -17,6 +17,7 @@ class V1::BookingsController < ApplicationController
 			head(:unauthorized)
 		end
 	end
+
 	def cancel
 		if @booking.set_status(4, current_user)
 			render :show, status: :ok
@@ -35,6 +36,7 @@ class V1::BookingsController < ApplicationController
 			head(:unauthorized)
 		end
 	end
+
 	def show
 		if @booking.user
 			render :show, status: :ok
@@ -42,6 +44,7 @@ class V1::BookingsController < ApplicationController
 			head(:unauthorized)
 		end
 	end
+
 	private
 		def set_booking
 			@booking = Booking.find(params[:id])

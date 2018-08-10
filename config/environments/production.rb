@@ -96,17 +96,6 @@ Rails.application.configure do
 	}
 
 	config.action_mailer.default_url_options = { :host => "montviagens.com"}
-	config.paperclip_defaults = {
-		storage: :s3,
-		path: ':class/:attachment/:id/:style/:filename',
-		s3_host_name: 's3-sa-east-1.amazonaws.com',
-		s3_credentials: {
-			bucket: ENV['BUCKET_NAME'],
-			access_key_id: ENV['AWS_ACCESS_KEY'],
-			secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-			s3_region: 'sa-east-1'
-		}
-	}
 	Paperclip.options[:image_magick_path] = "/usr/local/bin/"
 	Paperclip.options[:command_path] = "/usr/local/bin/"
 end

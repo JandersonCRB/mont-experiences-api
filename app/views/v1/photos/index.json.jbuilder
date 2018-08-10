@@ -15,10 +15,6 @@ end
 if @cover_photo
 	json.cover_photo do
 		json.id @cover_photo.id
-		if Rails.env.production?
-			json.url @cover_photo.image.url
-		else
-			json.url request.base_url + @cover_photo.image.url
-		end
+		json.url request.base_url + @cover_photo.image.url
 	end
 end

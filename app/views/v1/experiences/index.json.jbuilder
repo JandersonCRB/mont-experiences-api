@@ -19,8 +19,8 @@ json.array! @experiences do |experience|
 	json.has_transfer    experience.has_transfer
 	json.category        experience.categories.first.name if experience.categories.first.present?
 	if Rails.env.production?
-		json.cover_photo_url experience.cover_photo.image.url(:medium) if experience.cover_photo.present?
+		json.cover_photo_url "http://www.guiaviajarmelhor.com.br/wp-content/uploads/2017/10/Praias-Brasil-34.jpg" if experience.cover_photo.present?
 	else
-		json.cover_photo_url request.base_url + experience.cover_photo.image.url(:medium) if experience.cover_photo.present?
+		json.cover_photo_url "http://www.guiaviajarmelhor.com.br/wp-content/uploads/2017/10/Praias-Brasil-34.jpg" if experience.cover_photo.present?
 	end
 end

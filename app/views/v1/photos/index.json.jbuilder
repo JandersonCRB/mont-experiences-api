@@ -7,7 +7,7 @@ json.photos do
 		if Rails.env.production?
 			json.url photo.image.url
 		else
-			json.url request.base_url + photo.image.url
+			json.url "http://www.guiaviajarmelhor.com.br/wp-content/uploads/2017/10/Praias-Brasil-34.jpg"
 		end
 	end
 end
@@ -15,6 +15,6 @@ end
 if @cover_photo
 	json.cover_photo do
 		json.id @cover_photo.id
-		json.url request.base_url + @cover_photo.image.url
+		json.url "http://www.guiaviajarmelhor.com.br/wp-content/uploads/2017/10/Praias-Brasil-34.jpg"
 	end
 end

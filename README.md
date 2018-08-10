@@ -1,24 +1,9 @@
-# README
+Software criado para divulgação e agendamento de passeios.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este projeto contém apenas o back end.
 
-Things you may want to cover:
+Foi utilizado Ruby on Rails com PostgreSQL.
 
-* Ruby version
+[Clique para ver a demo](https://mont-experiences-ui.herokuapp.com/)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[Front end](https://github.com/JandersonCRB/mont-experiences-ui)
